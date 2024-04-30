@@ -7,9 +7,14 @@ class 2048
 {
 public:
     vector<vector<int>> board;
+    void up();
+    void down();
+    void left();
+    void right();
 
 private:
-    // no
+    void addnum();
+    void merge();
 };
 
 #endif
