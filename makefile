@@ -1,5 +1,5 @@
 all: ./src/main.cpp game
-	g++ -o ./bin/2048 ./src/main.cpp ./obj/game.o -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+	g++ -o ./bin/2048 ./src/main.cpp ./obj/game.o 
 game: ./src/game.cpp ./include/game.hpp
 	g++ -c ./include/game.hpp ./src/game.cpp -std=c++20
 	mv game.o ./obj

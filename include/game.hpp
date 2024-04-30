@@ -8,7 +8,7 @@ using namespace std;
 class Game
 {
 public:
-    vector<vector<int>> board;
+    vector<vector<int> > board;
     map<int, int> colorSpace;
     int score;
 

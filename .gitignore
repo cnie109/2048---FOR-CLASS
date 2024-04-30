@@ -2,17 +2,4 @@
 ./bin/2048
 ./include/game.hpp.gch
 ./obj/game.o
-=======
-CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
-src/2048
->>>>>>> 81f9e0bc70396c36eeec749f328c4490b5e5db24
+./settings.json
