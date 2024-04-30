@@ -2,29 +2,49 @@
 #include "raylib.h"
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <chrono>
+#include <time.h>
 #include <cmath>
-#include <cassert>
 
 using namespace std;
 
 Game::Game(int size)
 {
+
     score = 0;
-    vector<int> tmp(size, 2);
+
+    int row = rand() % size;
+    int col = rand() % size;
+
+    int row2 = rand() % size;
+    int col2 = rand() % size;
+
+    while (row == row2 && col == col2)
+    {
+
+        row2 = rand() % size;
+        col2 = rand() % size;
+    }
+
+    vector<int> tmp(size, 0);
     for (int i = 0; i < size; i++)
     {
         board.push_back(tmp);
     }
-    board[0][1] = 4;
-    board[0][2] = 8;
-    board[0][3] = 16;
-    board[1][0] = 32;
-    board[1][1] = 64;
-    board[1][2] = 128;
-    board[1][3] = 256;
-    board[2][0] = 512;
-    board[2][1] = 1024;
-    board[2][2] = 2048;
+
+    board[row][col] = 2;
+    board[row2][col2] = 2;
+
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+
+            cout << board[j][i] << " ";
+        }
+        cout << endl;
+    }
 
     // setup the colorSpace
     colorSpace.insert(*(new pair<int, int>(2, 0xff0000ff)));
