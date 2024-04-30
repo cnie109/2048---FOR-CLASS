@@ -27,17 +27,17 @@ Game::Game(int size)
     board[2][2] = 2048;
 
     // setup the colorSpace
-    colorSpace.insert(*(new pair<int, int>(2, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(4, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(8, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(16, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(32, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(64, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(128, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(256, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(512, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(2, 0x777777ff)));
-    colorSpace.insert(*(new pair<int, int>(2, 0x777777ff)));
+    colorSpace.insert(*(new pair<int, int>(2, 0xff0000ff)));
+    colorSpace.insert(*(new pair<int, int>(4, 0xfa8405ff)));
+    colorSpace.insert(*(new pair<int, int>(8, 0xffff00ff)));
+    colorSpace.insert(*(new pair<int, int>(16, 0xa8fa05ff)));
+    colorSpace.insert(*(new pair<int, int>(32, 0x00ff00ff)));
+    colorSpace.insert(*(new pair<int, int>(64, 0x05fab0ff)));
+    colorSpace.insert(*(new pair<int, int>(128, 0x05b5faff)));
+    colorSpace.insert(*(new pair<int, int>(256, 0x0000ffff)));
+    colorSpace.insert(*(new pair<int, int>(512, 0x9005faff)));
+    colorSpace.insert(*(new pair<int, int>(1024, 0xea05faff)));
+    colorSpace.insert(*(new pair<int, int>(2048, 0xfa0567ff)));
 }
 
 void Game::draw()
@@ -57,7 +57,7 @@ void Game::draw()
     {
         for (int j = 0; j < board.size(); j++)
         {
-            colorValue = 0x777777ff;
+            colorValue = colorSpace[board[j][i]];
             DrawRectangle(200 + i * (squareSize + margin), 100 + j * (squareSize + margin), squareSize, squareSize, GetColor(colorValue));
 
             // draw the numbers on each square
