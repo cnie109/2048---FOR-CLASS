@@ -7,6 +7,9 @@ class 2048
 {
 public:
     vector<vector<int>> board;
+
+private:
+    // no
 };
 
 #endif
