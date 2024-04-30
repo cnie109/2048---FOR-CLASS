@@ -1,3 +1,5 @@
+#ifndef GAME_HPP
+#define GAME_HPP
 #include <vector>
 #include <map>
 
@@ -20,3 +22,4 @@ public:
     void initScreen();
     void draw();
 };
+#endif
