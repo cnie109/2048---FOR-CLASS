@@ -19,7 +19,10 @@ public:
     void up();
     void down();
 
+    void merge();
+    void addNewBlock();
     void initScreen();
     void draw();
+    void print();
 };
 #endif
