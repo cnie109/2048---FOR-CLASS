@@ -1,5 +1,4 @@
 #include "../include/game.hpp"
-#include "raylib.h"
 #include <string>
 #include <iostream>
 #include <cstdlib>
@@ -37,6 +36,7 @@ Game::Game(int size)
 
     board[row][col] = 2;
     board[row2][col2] = 2;
+}
 
 void Game::print()
 {
