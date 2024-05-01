@@ -32,8 +32,6 @@ Game::Game(int size)
         board.push_back(tmp);
     }
 
-    // board[1][1] = 0;
-
     board[row][col] = 2;
     board[row2][col2] = 2;
 }
@@ -54,20 +52,6 @@ void Game::print()
 
 void Game::addNewBlock()
 {
-
-    vector<vector<int>> empy;
-
-    for (int i = 0; i < board.size(); i++)
-    {
-        for (int j = 0; j < board.size(); j++)
-        {
-            if (board[j][i] == 0)
-            {
-                // empy.push_back(i);
-                // empy.push_back(j);
-            }
-        }
-    }
 
     int randrow = rand() % (board.size() - 1);
     int randcol = rand() % (board.size() - 1);
