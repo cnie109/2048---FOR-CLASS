@@ -35,8 +35,6 @@ Game::Game(int size)
     board[row][col] = 2;
     board[row2][col2] = 2;
 }
-<<<<<<< Updated upstream
-=======
 
 // add up and down
 void Game::up() {
@@ -46,26 +44,6 @@ void Game::up() {
         int bottom = board.size() - 1;
 
         while (bottom != 0) {
-            // remove zeroes and combines (row-based:)
-            /*for (int i = 0; i < board.size(); i++) {
-                if (board[i][col] != 0) {
-                    if (i != temp_index) {
-                        board[temp_index][col] = board[i][col];
-                        board[i][col] = 0;
-                    }
-                    temp_index++;
-                }
-            }
-
-            temp_index = 0;
-
-            if (board[bottom - 1][col] == board[bottom][col]) {
-                board[bottom - 1][col] = 2 * board[bottom][col];
-                board[bottom][col] = 0;
-            }
-            bottom--;
-            */
-           
            // removes zeroes and combines (col-based:)
            for (int i = 0; i < board.size(); i++) {
                 if (board[col][i] != 0) {
@@ -117,7 +95,6 @@ void Game::down() {
         }
     }
 }
->>>>>>> Stashed changes
 
 void Game::print()
 {
@@ -134,23 +111,6 @@ void Game::print()
 
 void Game::addNewBlock()
 {
-<<<<<<< Updated upstream
-=======
-    vector<vector<int>> empy;
-
-    for (int i = 0; i < board.size(); i++)
-    {
-        for (int j = 0; j < board.size(); j++)
-        {
-            if (board[j][i] == 0)
-            {
-                // empy.push_back(i);
-                // empy.push_back(j);
-            }
-        }
-    }
->>>>>>> Stashed changes
-
     int randrow = rand() % (board.size() - 1);
     int randcol = rand() % (board.size() - 1);
 
