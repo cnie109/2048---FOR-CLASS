@@ -225,7 +225,7 @@ void Game::down()
 
 void Game::draw()
 {
-    int squareSize = 100;
+    int squareSize = 100 / (board.size() / 4 == 0 ? 1 : board.size() / 4);
     int margin = squareSize / 30;
     int fontSize;
     int squareOffset;
