@@ -3,3 +3,4 @@ include/game.hpp.gch
 obj/game.o
 makefile
 .vscode
+game.o

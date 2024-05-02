@@ -18,10 +18,10 @@ public:
     void right();
     void up();
     void down();
-
-    void merge();
     void addNewBlock();
-    void initScreen();
+    bool isFull();
+    
+    void addNewBlock();
     void draw();
     void print();
 };
