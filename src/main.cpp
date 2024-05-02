@@ -10,4 +10,10 @@ int main()
     
     game->addNewBlock();
     game->print();
+
+    /*game->up();
+    game->print();*/
+
+    game->down();
+    game->print();
 }
