@@ -14,7 +14,7 @@ int main()
 
     const int width = 800;
     const int height = 800;
-    const int frameRate = 480;
+    const int frameRate = 100000;
 
     InitWindow(width, height, "2048");
     SetTargetFPS(frameRate);
@@ -25,44 +25,38 @@ int main()
         ClearBackground(BLACK);
         DrawText(TextFormat("FPS: %i", GetFPS()), 500, 40, 20, GREEN);
         game->draw();
+        if (game->state == 2)
+        {
+            DrawText("YOU WIN", 100, 10, 100, GRAY);
+            EndDrawing();
+            WaitTime(3);
+            break;
+        }
         EndDrawing();
 
-        // if (game->isFull())
-        // {
-        //     lost = true;
-        //     break;
-        // }
         if (IsKeyPressed(KEY_RIGHT))
         {
             game->right();
-            if (!game->isFull())
-            {
-                game->addNewBlock();
-            }
+            game->addNewBlock();
+            game->addNewBlock();
         }
         else if (IsKeyPressed(KEY_LEFT))
         {
             game->left();
-            if (!game->isFull())
-            {
-                game->addNewBlock();
-            }
+            game->addNewBlock();
+            game->addNewBlock();
         }
         else if (IsKeyPressed(KEY_DOWN))
         {
             game->down();
-            if (!game->isFull())
-            {
-                game->addNewBlock();
-            }
+            game->addNewBlock();
+            game->addNewBlock();
         }
         else if (IsKeyPressed(KEY_UP))
         {
             game->up();
-            if (!game->isFull())
-            {
-                game->addNewBlock();
-            }
+            game->addNewBlock();
+            game->addNewBlock();
         }
     }
 

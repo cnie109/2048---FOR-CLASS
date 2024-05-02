@@ -11,6 +11,7 @@ public:
     vector<vector<int> > board;
     map<int, int> colorSpace;
     int score;
+    char state; // 0 = normal, 1 = lost, 2 = won
 
     Game(int);
 
@@ -20,8 +21,7 @@ public:
     void down();
     void addNewBlock();
     bool isFull();
-    
-    void addNewBlock();
+
     void draw();
     void print();
 };
