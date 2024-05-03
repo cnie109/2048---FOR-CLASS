@@ -1,11 +1,8 @@
 #include "../include/game.hpp"
 #include "raylib.h"
-#include <string>
 #include <iostream>
-#include <cstdlib>
-#include <chrono>
-#include <time.h>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
@@ -150,77 +147,31 @@ void Game::right()
     }
 }
 
-void Game::up()
+vector<vector<int>> transpose(vector<vector<int>> &input)
 {
-    int temp_index = 0;
-
-    for (int col = 0; col < board.size(); col++)
+    vector<vector<int>> result(input.size(), *(new vector<int>(input.size(), 0)));
+    for (int i = 0; i < input.size(); i++)
     {
-        int bottom = board.size() - 1;
-
-        while (bottom != 0)
+        for (int j = 0; j < input.size(); j++)
         {
-            for (int i = 0; i < board.size(); i++)
-            {
-                if (board[i][col] != 0)
-                {
-                    if (i != temp_index)
-                    {
-                        board[temp_index][col] = board[i][col];
-                        board[i][col] = 0;
-                    }
-                    temp_index++;
-                }
-            }
-            temp_index = 0;
-            if (board[bottom - 1][col] == board[bottom][col])
-            {
-                board[bottom - 1][col] = 2 * board[bottom][col];
-                board[bottom][col] = 0;
-                state = board[bottom - 1][col] == 2048 ? 2 : 0;
-                score += board[bottom - 1][col];
-            }
-            bottom--;
+            result[j][i] = input[i][j];
         }
     }
+    return result;
+}
+
+void Game::up()
+{
+    board = transpose(board);
+    left();
+    board = transpose(board);
 }
 
 void Game::down()
 {
-    int temp_index = board.size() - 1;
-
-    for (int col = 0; col < board.size(); col++)
-    {
-        int top = 0;
-
-        while (top != board.size() - 1)
-        {
-            for (int i = board.size() - 1; i >= 0; i--)
-            {
-                if (board[i][col] != 0)
-                {
-                    if (i != temp_index)
-                    {
-                        board[temp_index][col] = board[i][col];
-                        board[i][col] = 0;
-                    }
-                    temp_index--;
-                }
-            }
-
-            temp_index = board.size() - 1;
-
-            if (board[top + 1][col] == board[top][col])
-            {
-                board[top + 1][col] = 2 * board[top][col];
-                board[top][col] = 0;
-                state = board[top + 1][col] == 2048 ? 2 : 0;
-                score += board[top + 1][col];
-            }
-
-            top++;
-        }
-    }
+    board = transpose(board);
+    right();
+    board = transpose(board);
 }
 
 void Game::draw()
@@ -244,17 +195,20 @@ void Game::draw()
             DrawRectangle(200 + i * (squareSize + margin), 100 + j * (squareSize + margin), squareSize, squareSize, GetColor(colorValue));
 
             // draw the numbers on each square
-            if (board[j][i] != 0)
+            if (board.size() < 20)
             {
-                squareOffset = squareSize / 2;
-                fontSize = squareSize / 2.5 - log10(board[j][i]) * 3;
-                fontOffsetX = fontSize / 3 * log10(board[j][i]);
-                fontOffsetY = fontSize / 2;
-                DrawText(to_string(board[j][i]).c_str(),
-                         200 + squareOffset - fontOffsetX + i * (squareSize + margin),
-                         100 + squareOffset - fontOffsetY + j * (squareSize + margin),
-                         fontSize,
-                         WHITE);
+                if (board[j][i] != 0)
+                {
+                    squareOffset = squareSize / 2;
+                    fontSize = squareSize / 2.5 - log10(board[j][i]) * 3;
+                    fontOffsetX = fontSize / 3 * log10(board[j][i]);
+                    fontOffsetY = fontSize / 2;
+                    DrawText(to_string(board[j][i]).c_str(),
+                             200 + squareOffset - fontOffsetX + i * (squareSize + margin),
+                             100 + squareOffset - fontOffsetY + j * (squareSize + margin),
+                             fontSize,
+                             WHITE);
+                }
             }
         }
     }
