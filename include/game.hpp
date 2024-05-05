@@ -9,6 +9,7 @@ class Game
 {
 public:
     vector<vector<int> > board;
+    vector<vector<int>> previousBoard;
     map<int, int> colorSpace;
     int score;
     char state; // 0 = normal, 1 = lost, 2 = won
@@ -21,6 +22,7 @@ public:
     void down();
     void addNewBlock();
     bool isFull();
+    bool hasChanged();
 
     void draw();
     void print();

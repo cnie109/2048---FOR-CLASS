@@ -32,6 +32,7 @@ Game::Game(int size)
 
     board[row][col] = 2;
     board[row2][col2] = 2;
+    previousBoard = board;
 
     print();
 
@@ -81,6 +82,44 @@ bool Game::isFull()
         }
     }
     return true;
+}
+
+bool Game::hasChanged()
+{
+    // cout << "=======" << endl;
+    // for (int i = 0; i < board.size(); i++)
+    // {
+    //     for (int j = 0; j < board.size(); j++)
+    //     {
+    //         cout << previousBoard[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // cout << "-------" << endl;
+    // for (int i = 0; i < board.size(); i++)
+    // {
+    //     for (int j = 0; j < board.size(); j++)
+    //     {
+    //         cout << board[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+
+    for (int i = 0; i < board.size(); i++)
+    {
+        for (int j = 0; j < board.size(); j++)
+        {
+            // cout << "board: " << board[i][j] << " previous: " << previousBoard[i][j] << endl;
+            if (board[i][j] != previousBoard[i][j])
+            {
+                // cout << "changed" << endl;
+                previousBoard = board;
+                return true;
+            }
+        }
+    }
+    previousBoard = board;
+    return false;
 }
 
 // move every block left

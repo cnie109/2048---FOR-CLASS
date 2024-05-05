@@ -6,6 +6,16 @@
 
 using namespace std;
 
+void postMove(Game *game, Sound sound)
+{
+    if (game->hasChanged())
+    {
+        game->addNewBlock();
+        game->addNewBlock();
+    }
+    PlaySound(sound);
+}
+
 int main()
 {
     srand(time(0));
@@ -25,15 +35,15 @@ int main()
     Texture2D texture = LoadTexture("Kitty.png");
 
     InitAudioDevice();
-    Music music = LoadMusicStream("kurdsong.mp3");
-    PlayMusicStream(music);
+    Music backgroundMusic = LoadMusicStream("kurdsong.mp3");
+    PlayMusicStream(backgroundMusic);
 
-    Sound sound = LoadSound("taco-bell-bong-sfx.wav");
+    Sound winSound = LoadSound("taco-bell-bong-sfx.wav");
     Sound moveSound = LoadSound("vine-boom.wav");
 
     while (!WindowShouldClose())
     {
-        UpdateMusicStream(music);
+        UpdateMusicStream(backgroundMusic);
         BeginDrawing();
         ClearBackground(BLACK);
         DrawText(TextFormat("FPS: %i", GetFPS()), 500, 40, 20, PURPLE);
@@ -42,14 +52,17 @@ int main()
         {
             DrawTexture(texture, width / 2 - texture.width / 2, height / 2 - texture.height / 2, WHITE);
             DrawText("YOU WIN", 100, 550, 100, YELLOW);
-            PlaySound(sound);
+            PlaySound(winSound);
             EndDrawing();
             WaitTime(3);
             break;
         }
         EndDrawing();
+
+        // autoplay if the board size is 15
         if (game->board.size() == 15)
         {
+            PlaySound(moveSound);
             game->right();
             game->addNewBlock();
         }
@@ -57,34 +70,28 @@ int main()
         if (IsKeyPressed(KEY_RIGHT))
         {
             game->right();
-            game->addNewBlock();
-            game->addNewBlock();
-            PlaySound(moveSound);
+            postMove(game, moveSound);
         }
         else if (IsKeyPressed(KEY_LEFT))
         {
             game->left();
-            game->addNewBlock();
-            game->addNewBlock();
-            PlaySound(moveSound);
+            postMove(game, moveSound);
         }
         else if (IsKeyPressed(KEY_DOWN))
         {
             game->down();
-            game->addNewBlock();
-            game->addNewBlock();
-            PlaySound(moveSound);
+            postMove(game, moveSound);
         }
         else if (IsKeyPressed(KEY_UP))
         {
             game->up();
-            game->addNewBlock();
-            game->addNewBlock();
-            PlaySound(moveSound);
+            postMove(game, moveSound);
         }
     }
 
-    UnloadMusicStream(music);
+    UnloadMusicStream(backgroundMusic);
+    UnloadSound(moveSound);
+    UnloadSound(winSound);
     CloseAudioDevice();
     CloseWindow();
 }
