@@ -122,6 +122,20 @@ bool Game::hasChanged()
     return false;
 }
 
+bool Game::loss() {
+    if (isFull()) {
+        previousBoard = board;
+        left(); right(); up(); down();
+        if (board == previousBoard) {
+            state = 1;
+            return true;
+        }
+        board = previousBoard;
+    }
+    return false;
+}
+
+
 // move every block left
 void Game::left()
 {
@@ -215,6 +229,7 @@ void Game::down()
 
 void Game::draw()
 {
+    loss();
     int squareSize = 100 / (board.size() / 4 == 0 ? 1 : board.size() / 4);
     int margin = squareSize / 30;
     int fontSize;

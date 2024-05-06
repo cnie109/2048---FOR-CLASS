@@ -57,6 +57,14 @@ int main()
             WaitTime(3);
             break;
         }
+        else if (game->state == 1) {
+            DrawTexture(texture, width / 2 - texture.width / 2, height / 2 - texture.height / 2, WHITE);
+            DrawText("YOU LOSE", 100, 550, 100, RED);
+            PlaySound(winSound);
+            EndDrawing();
+            WaitTime(3);
+            break;
+        }
         EndDrawing();
 
         // autoplay if the board size is 15
