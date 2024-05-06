@@ -126,7 +126,7 @@ bool Game::loss() {
     if (isFull()) {
         previousBoard = board;
         left(); right(); up(); down();
-        if (board == previousBoard) {
+        if (isFull() && board == previousBoard) {
             state = 1;
             return true;
         }
