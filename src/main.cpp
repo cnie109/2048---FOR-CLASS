@@ -42,7 +42,6 @@ int main()
     Sound winSound = LoadSound("taco-bell-bong-sfx.wav");
     Sound loseSound = LoadSound("spongebob-fail.mp3");
     Sound moveSound = LoadSound("vine-boom.wav");
-    
 
     while (!WindowShouldClose())
     {
@@ -60,7 +59,8 @@ int main()
             WaitTime(3);
             break;
         }
-        else if (game->state == 1) {
+        else if (game->state == 1)
+        {
             DrawTexture(lossTexture, width / 2 - lossTexture.width / 2, height / 2 - lossTexture.height / 2, WHITE);
             DrawText("YOU LOSE", 100, 550, 100, RED);
             PlaySound(loseSound);

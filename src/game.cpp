@@ -86,33 +86,12 @@ bool Game::isFull()
 
 bool Game::hasChanged()
 {
-    // cout << "=======" << endl;
-    // for (int i = 0; i < board.size(); i++)
-    // {
-    //     for (int j = 0; j < board.size(); j++)
-    //     {
-    //         cout << previousBoard[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-    // cout << "-------" << endl;
-    // for (int i = 0; i < board.size(); i++)
-    // {
-    //     for (int j = 0; j < board.size(); j++)
-    //     {
-    //         cout << board[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-
     for (int i = 0; i < board.size(); i++)
     {
         for (int j = 0; j < board.size(); j++)
         {
-            // cout << "board: " << board[i][j] << " previous: " << previousBoard[i][j] << endl;
             if (board[i][j] != previousBoard[i][j])
             {
-                // cout << "changed" << endl;
                 previousBoard = board;
                 return true;
             }
@@ -122,19 +101,26 @@ bool Game::hasChanged()
     return false;
 }
 
-bool Game::loss() {
-    if (isFull()) {
+bool Game::loss()
+{
+    if (isFull())
+    {
+        int previousScore = score;
         previousBoard = board;
-        left(); right(); up(); down();
-        if (isFull() && board == previousBoard) {
+        left();
+        right();
+        up();
+        down();
+        if (isFull() && board == previousBoard)
+        {
             state = 1;
             return true;
         }
         board = previousBoard;
+        score = previousScore;
     }
     return false;
 }
-
 
 // move every block left
 void Game::left()
@@ -229,7 +215,7 @@ void Game::down()
 
 void Game::draw()
 {
-    
+
     int squareSize = 100 / (board.size() / 4 == 0 ? 1 : board.size() / 4);
     int margin = squareSize / 30;
     int fontSize;
