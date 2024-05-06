@@ -229,7 +229,7 @@ void Game::down()
 
 void Game::draw()
 {
-    loss();
+    
     int squareSize = 100 / (board.size() / 4 == 0 ? 1 : board.size() / 4);
     int margin = squareSize / 30;
     int fontSize;
@@ -266,6 +266,7 @@ void Game::draw()
             }
         }
     }
+    loss();
 }
 
 void Game::print()
