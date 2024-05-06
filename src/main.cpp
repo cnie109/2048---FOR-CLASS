@@ -33,13 +33,16 @@ int main()
     SetTargetFPS(frameRate);
 
     Texture2D texture = LoadTexture("Kitty.png");
+    Texture2D lossTexture = LoadTexture("loss.png");
 
     InitAudioDevice();
     Music backgroundMusic = LoadMusicStream("kurdsong.mp3");
     PlayMusicStream(backgroundMusic);
 
     Sound winSound = LoadSound("taco-bell-bong-sfx.wav");
+    Sound loseSound = LoadSound("spongebob-fail.mp3");
     Sound moveSound = LoadSound("vine-boom.wav");
+    
 
     while (!WindowShouldClose())
     {
@@ -58,9 +61,9 @@ int main()
             break;
         }
         else if (game->state == 1) {
-            DrawTexture(texture, width / 2 - texture.width / 2, height / 2 - texture.height / 2, WHITE);
+            DrawTexture(lossTexture, width / 2 - lossTexture.width / 2, height / 2 - lossTexture.height / 2, WHITE);
             DrawText("YOU LOSE", 100, 550, 100, RED);
-            PlaySound(winSound);
+            PlaySound(loseSound);
             EndDrawing();
             WaitTime(3);
             break;
