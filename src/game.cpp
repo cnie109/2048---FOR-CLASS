@@ -36,7 +36,7 @@ Game::Game(int size)
 
     print();
 
-    // setup the colorSpace
+    // setup the color space
     colorSpace.insert(*(new pair<int, int>(0, 0x777777ff)));
     colorSpace.insert(*(new pair<int, int>(2, 0xff0000ff)));
     colorSpace.insert(*(new pair<int, int>(4, 0xfa8405ff)));
@@ -57,15 +57,19 @@ void Game::addNewBlock()
     {
         return;
     }
+
+    // get a random block
     int randrow = rand() % (board.size());
     int randcol = rand() % (board.size());
 
+    // until that random block is empy, get a new random block
     while (board[randrow][randcol] != 0)
     {
         randrow = rand() % (board.size());
         randcol = rand() % (board.size());
     }
 
+    // 10% of the time it should spawn a 4 instead of a 2
     board[randrow][randcol] = rand() > 0.1 ? 2 : 4;
 }
 
@@ -105,6 +109,8 @@ bool Game::loss()
 {
     if (isFull())
     {
+        // try each direction, and see if the board is still full
+        // if it is, you have lost
         int previousScore = score;
         previousBoard = board;
         left();
@@ -199,6 +205,7 @@ vector<vector<int>> transpose(vector<vector<int>> &input)
     return result;
 }
 
+// doing up and down this way is ~150x faster on larger boards than doing it the intuitive way
 void Game::up()
 {
     board = transpose(board);

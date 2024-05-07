@@ -4,3 +4,4 @@ obj/game.o
 makefile
 .vscode
 game.o
+lib/libraylib.a

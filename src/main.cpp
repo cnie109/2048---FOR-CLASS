@@ -23,14 +23,13 @@ int main()
     // it is recommended that you do not do a game larger than 100
     // however, it will still work
     // realistically you shouldn't go over 11 otherwise winning becomes trivial (spam one direction and you win eventually)
-    Game *game = new Game(4);
+    // setting it to 15 will make it run and win automatically with our very advanced high tech AI
+    Game *game = new Game(15);
 
     const int width = 800;
     const int height = 800;
-    const int frameRate = 10000;
 
     InitWindow(width, height, "2048");
-    SetTargetFPS(frameRate);
 
     Texture2D texture = LoadTexture("Kitty.png");
     Texture2D lossTexture = LoadTexture("loss.png");
@@ -50,6 +49,7 @@ int main()
         ClearBackground(BLACK);
         DrawText(TextFormat("FPS: %i", GetFPS()), 500, 40, 20, PURPLE);
         game->draw();
+        // game-state == 2 = win
         if (game->state == 2)
         {
             DrawTexture(texture, width / 2 - texture.width / 2, height / 2 - texture.height / 2, WHITE);
@@ -59,6 +59,7 @@ int main()
             WaitTime(3);
             break;
         }
+        // game-state == 1 = lose
         else if (game->state == 1)
         {
             DrawTexture(lossTexture, width / 2 - lossTexture.width / 2, height / 2 - lossTexture.height / 2, WHITE);
@@ -78,22 +79,23 @@ int main()
             game->addNewBlock();
         }
 
-        if (IsKeyPressed(KEY_RIGHT))
+        // get if the arrow keys are pressed and do the appropriate action
+        if (IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_D))
         {
             game->right();
             postMove(game, moveSound);
         }
-        else if (IsKeyPressed(KEY_LEFT))
+        else if (IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_D))
         {
             game->left();
             postMove(game, moveSound);
         }
-        else if (IsKeyPressed(KEY_DOWN))
+        else if (IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_D))
         {
             game->down();
             postMove(game, moveSound);
         }
-        else if (IsKeyPressed(KEY_UP))
+        else if (IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_D))
         {
             game->up();
             postMove(game, moveSound);
